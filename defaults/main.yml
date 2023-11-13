@@ -1,0 +1,10 @@
+---
+# See available releases: https://github.com/go-task/task/releases
+task_version: '3.31.0'
+task_platform: linux
+task_arch: amd64
+task_bin_path: /usr/local/bin/task
+task_release_url: https://github.com/go-task/task/releases/download/v{{ task_version }}
+task_archive_name: task_{{ task_platform }}_{{ task_arch }}.tar.gz
+task_download_url: "{{ task_release_url }}/{{ task_archive_name }}"
+task_checksum_url: "{{ task_release_url }}/task_checksums.txt"

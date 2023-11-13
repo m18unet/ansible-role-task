@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars_files:
+    - ../../defaults/main.yml
+
+  tasks:
+    - name: Check the task version.
+      command: "{{ task_bin_path }} --version"
+      changed_when: false
+      register: task_verify_version
+
+    - name: Verify task's version is {{ task_version }}
+      assert:
+        that:
+          - task_version in task_verify_version.stdout

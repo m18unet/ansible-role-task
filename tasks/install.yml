@@ -1,0 +1,23 @@
+---
+- name: Download the task archive.
+  get_url:
+    url: "{{ task_download_url }}"
+    dest: /tmp
+    checksum: sha256:{{ task_checksum_url }}
+    mode: 0755
+  register: task_download
+
+- name: Unarchive the task archive.
+  unarchive:
+    src: "{{ task_download.dest }}"
+    dest: /tmp
+    mode: 0755
+    remote_src: true
+
+- name: Copy the task binary into place.
+  copy:
+    src: /tmp/task
+    dest: "{{ task_bin_path }}"
+    mode: 0755
+    remote_src: true
+  become: true

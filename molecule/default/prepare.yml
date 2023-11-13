@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars:
+    task_version: '3.28.0'
+
+  roles:
+    - m18unet.task
